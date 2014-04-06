@@ -361,4 +361,25 @@ public class JieSongMysqlIpml implements JieSongDAO{
 		return ret;
 	}
 
+	@Override
+	public int changePassword(int userId, String newPassword) {
+		Session session = null;
+		int ret = 0;
+		
+		try{
+			session = HibernateUtil.getSession();
+			session.beginTransaction();
+			User user = (User) session.load(User.class, userId);
+			user.setPassword(newPassword);
+			session.getTransaction().commit();
+		} catch(Exception e){
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			ret = 1;
+		} finally {
+			HibernateUtil.closeSession(session);
+		}
+		return ret;
+	}
+
 }

@@ -42,15 +42,18 @@ public class TEST {
 //		
 //		dao.addCar(t, c);
 		
-		Address a = new Address();
-		a.setStree("Anzac pde");
-		a.setSuburb("Kingsford");
-		a.setProvince("NSW");
-		a.setNation("Australian");
-		a.setPostcode("2032");
-		t.setId(1);
+//		Address a = new Address();
+//		a.setStree("Anzac pde");
+//		a.setSuburb("Kingsford");
+//		a.setProvince("NSW");
+//		a.setNation("Australian");
+//		a.setPostcode("2032");
+//		t.setId(1);
+//		
+//		dao.addAddress(t, a);
 		
-		dao.addAddress(t, a);
+		
+		dao.changePassword(1, "456");
 		
 	}
 

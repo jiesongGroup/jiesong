@@ -16,6 +16,13 @@ import com.jiesong.model.User;
 public interface JieSongDAO {
 	public int createUser(User creator, User u); 
 	public int suspendUser(User mender, User u);
+	/**
+	 * This is a manually update user unless really confidence of
+	 * knowing of what to change, otherwise do not use it.
+	 * @param mender
+	 * @param u
+	 * @return status code
+	 */
 	public int updateUser(User mender, User u);
 	public ArrayList<User> listAllActiveUser(User u);
 	/**
@@ -27,6 +34,13 @@ public interface JieSongDAO {
 	 * @return status code
 	 */
 	public int loginCheck(String username, String password);
+	/**
+	 * Change the password
+	 * @param userId
+	 * @param newPassword
+	 * @return status code
+	 */
+	public int changePassword(int userId, String newPassword);
 	
 	public int addCar(User u, Car c);
 	public int suspendCar(User u, Car c);
