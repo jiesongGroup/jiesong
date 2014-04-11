@@ -1,1 +1,9 @@
-I have add change password method in DAO, If you need any interface, just let me know :)
+需要增加的接口
+1.单独修改用户密码
+2.修改除了密码以外的其他用户信息
+3.根据用户的ID查找地址(参数直接提供用户id,而不是一个地址的对象)
+4.查找可用的服务
+    查找结果:返回含有司机电话 名字等信息的表
+    条件:1.司机能提供服务
+         2.司机的时间符合
+         3.地址上看看需要怎么筛选.(不行再讨论)
