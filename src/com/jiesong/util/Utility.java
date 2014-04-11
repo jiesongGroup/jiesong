@@ -77,4 +77,22 @@ public class Utility {
 		
 		return ret;
 	}
+	
+	public static Timestamp parseStringtoTimestamp(String str){
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		ts = Timestamp.valueOf(str);
+		return ts;
+	}
+	public static String generateCode(){
+		final String[] str = { "0", "1", "2", "3", "4", "5", "6", "7", "8",
+			  "9", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s",
+			  "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n",
+			  "m" };
+		String s = "";
+		 for (int i = 0; i < 16; i++) {
+		  int a=(int)(Math.random()*36);
+		  s+=str[a];
+		 }
+		 return s;		 
+	}
 }
