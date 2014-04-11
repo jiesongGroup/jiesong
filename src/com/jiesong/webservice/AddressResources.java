@@ -15,16 +15,14 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-
-
-
 
 import com.jiesong.jdbc.JieSongDAO;
 import com.jiesong.jdbc.JieSongMysqlIpml;
-import com.sun.mail.iap.Response;
+//import com.sun.mail.iap.Response;
 import com.jiesong.model.*;
-import com.jiesong.util.PropertiesUtil;
+//import com.jiesong.util.PropertiesUtil;
 import com.jiesong.util.Utility;
 
 
