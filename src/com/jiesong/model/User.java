@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.jiesong.adapter.SqlTimestampAdapter;
-import com.jiesong.util.Gender;
+import com.jiesong.model.util.Gender;
 
 /**
  * User bean

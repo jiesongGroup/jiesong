@@ -22,8 +22,8 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import com.jiesong.model.*;
+import com.jiesong.model.util.Gender;
 import com.jiesong.jdbc.*;
-import com.jiesong.util.Gender;
 import com.jiesong.util.Utility;
 
 

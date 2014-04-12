@@ -7,7 +7,7 @@ import com.jiesong.jdbc.JieSongMysqlIpml;
 import com.jiesong.model.Address;
 import com.jiesong.model.Car;
 import com.jiesong.model.User;
-import com.jiesong.util.Gender;
+import com.jiesong.model.util.Gender;
 
 public class TEST {
 

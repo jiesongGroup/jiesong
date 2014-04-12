@@ -1,5 +1,6 @@
 package com.jiesong.jdbc;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import org.hibernate.HibernateException;
@@ -10,7 +11,9 @@ import org.hibernate.Transaction;
 import com.jiesong.model.Address;
 import com.jiesong.model.AvaliableTime;
 import com.jiesong.model.Car;
+import com.jiesong.model.Time;
 import com.jiesong.model.User;
+import com.jiesong.model.util.Airport;
 import com.jiesong.util.HibernateUtil;
 import com.jiesong.util.Utility;
 
@@ -380,6 +383,42 @@ public class JieSongMysqlIpml implements JieSongDAO{
 			HibernateUtil.closeSession(session);
 		}
 		return ret;
+	}
+
+	@Override
+	public Address getUserAddressByUserId(int userId) {
+		return null;
+	}
+
+	@Override
+	public ArrayList<User> getAvaliableServiceProviderList(Time timeFrame, Airport airport) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateUserInformation(User mendor, String nickname,
+			String email, Timestamp dob) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int changeServiceStatus(int userId, boolean serviceStatus) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int changeEmailVerificationStatus(int userId, boolean emailStatus) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int changeLastLoginTime(int userId, Timestamp currentTime) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

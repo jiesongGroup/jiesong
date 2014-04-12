@@ -1,11 +1,14 @@
 package com.jiesong.jdbc;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.jiesong.model.Address;
 import com.jiesong.model.AvaliableTime;
 import com.jiesong.model.Car;
+import com.jiesong.model.Time;
 import com.jiesong.model.User;
+import com.jiesong.model.util.Airport;
 /**
  * This class is a data access object for database jiesongDB.
  * <p> status code 0 is always means SUCCESS.
@@ -77,4 +80,16 @@ public interface JieSongDAO {
 	 * @return ArrayList<AvaliableTime>
 	 */
 	public ArrayList<AvaliableTime> searchAvaliableTime(User u, AvaliableTime a);
+	
+	public Address getUserAddressByUserId(int userId);
+	
+	public ArrayList<User> getAvaliableServiceProviderList(Time timeFrame, Airport airport);
+	
+	public int updateUserInformation(User mendor, String nickname, String email, Timestamp dob);
+	
+	public int changeServiceStatus(int userId, boolean serviceStatus);
+	
+	public int changeEmailVerificationStatus(int userId, boolean emailStatus);
+	
+	public int changeLastLoginTime(int userId, Timestamp currentTime);
 }
