@@ -26,7 +26,6 @@ public interface JieSongDAO {
 	 * @param u
 	 * @return status code
 	 */
-	public int updateUser(User mender, User u);
 	public ArrayList<User> listAllActiveUser(User u);
 	/**
 	 * This interface is for checking login.
@@ -47,7 +46,8 @@ public interface JieSongDAO {
 	
 	public int addCar(User u, Car c);
 	public int suspendCar(User u, Car c);
-	public int updateCar(User u, Car c);
+	public int updateCarInformationByUserId(int carId, int maxSeats, int maxLuggages);
+	public int updateCarImage(int carId, String imageURI);
 	/**
 	 * This interface is for select the Car fit the condition of a Car
 	 * Currently only supports userId search.
@@ -59,7 +59,6 @@ public interface JieSongDAO {
 	
 	public int addAddress(User u, Address a);
 	public int suspendAddress(User u, Address a);
-	public int updateAddress(User u, Address a);
 	/**
 	 * This interface is for select the Address fit the condition of a Address
 	 * Currently only supports userId search.
@@ -69,9 +68,7 @@ public interface JieSongDAO {
 	 */
 	public ArrayList<Address> searchAddress(Address a);
 	
-	public int addAvaliableTime(User u, AvaliableTime a);
-	public int suspendAvaliableTime(User u, AvaliableTime a);
-	public int updateAvaliableTime(User u, AvaliableTime a);
+	public int updateAvaliableTimeSchedule(User u, ArrayList<AvaliableTime> a);
 	/**
 	 * This interface is for select the AvaliableTime fit the condition of a AvaliableTime
 	 * Currently only supports userId search.
@@ -91,5 +88,5 @@ public interface JieSongDAO {
 	
 	public int changeEmailVerificationStatus(int userId, boolean emailStatus);
 	
-	public int changeLastLoginTime(int userId, Timestamp currentTime);
+	public int changeLastLoginTime(int userId);
 }

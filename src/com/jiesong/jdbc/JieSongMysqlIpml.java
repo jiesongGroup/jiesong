@@ -54,7 +54,6 @@ public class JieSongMysqlIpml implements JieSongDAO{
 		return updateUser(mender, u);
 	}
 
-	@Override
 	public int updateUser(User mender, User u) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
@@ -165,7 +164,6 @@ public class JieSongMysqlIpml implements JieSongDAO{
 		return updateCar(u, c);
 	}
 
-	@Override
 	public int updateCar(User u, Car c) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
@@ -241,7 +239,6 @@ public class JieSongMysqlIpml implements JieSongDAO{
 		return updateAddress(u, a);
 	}
 
-	@Override
 	public int updateAddress(User u, Address a) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
@@ -287,7 +284,6 @@ public class JieSongMysqlIpml implements JieSongDAO{
 		return ret;
 	}
 
-	@Override
 	public int addAvaliableTime(User u, AvaliableTime a) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
@@ -311,13 +307,11 @@ public class JieSongMysqlIpml implements JieSongDAO{
 		return 0;
 	}
 
-	@Override
 	public int suspendAvaliableTime(User u, AvaliableTime a) {
 		a.setActive(false);
 		return updateAvaliableTime(u, a);
 	}
 
-	@Override
 	public int updateAvaliableTime(User u, AvaliableTime a) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
@@ -387,7 +381,20 @@ public class JieSongMysqlIpml implements JieSongDAO{
 
 	@Override
 	public Address getUserAddressByUserId(int userId) {
-		return null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		Address a = null;
+
+		try{
+			transaction = session.beginTransaction();
+			a = (Address) session.get(Address.class, userId);
+			transaction.commit();
+		} catch (HibernateException e){
+
+		} finally {
+			session.close();
+		}
+		return a;
 	}
 
 	@Override
@@ -399,26 +406,148 @@ public class JieSongMysqlIpml implements JieSongDAO{
 	@Override
 	public int updateUserInformation(User mendor, String nickname,
 			String email, Timestamp dob) {
-		// TODO Auto-generated method stub
+//		Session session = HibernateUtil.getSessionFactory().openSession();
+//		Transaction transaction = null;
+//		User u = null;
+//
+//		try{
+//			transaction = session.beginTransaction();
+//			u = (User) session.get(User.class, userId);
+//			u.setLastSignInTime(Utility.getCurrentTimestamp());
+//			transaction.commit();
+//		} catch (HibernateException e){
+//
+//		} finally {
+//			session.close();
+//		}
+		
 		return 0;
 	}
 
 	@Override
 	public int changeServiceStatus(int userId, boolean serviceStatus) {
-		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		User u = null;
+
+		try{
+			transaction = session.beginTransaction();
+			u = (User) session.get(User.class, userId);
+			u.setServiceStatus(serviceStatus);
+			transaction.commit();
+		} catch (HibernateException e){
+
+		} finally {
+			session.close();
+		}
 		return 0;
 	}
 
 	@Override
 	public int changeEmailVerificationStatus(int userId, boolean emailStatus) {
-		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		User u = null;
+
+		try{
+			transaction = session.beginTransaction();
+			u = (User) session.get(User.class, userId);
+			u.setEmailVerified(emailStatus);
+			transaction.commit();
+		} catch (HibernateException e){
+
+		} finally {
+			session.close();
+		}
 		return 0;
 	}
 
 	@Override
-	public int changeLastLoginTime(int userId, Timestamp currentTime) {
-		// TODO Auto-generated method stub
+	public int changeLastLoginTime(int userId) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		User u = null;
+
+		try{
+			transaction = session.beginTransaction();
+			u = (User) session.get(User.class, userId);
+			u.setLastSignInTime(Utility.getCurrentTimestamp());
+			transaction.commit();
+		} catch (HibernateException e){
+
+		} finally {
+			session.close();
+		}
 		return 0;
+	}
+
+	public int deleteAvaliableTimeByUserId(int userId) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		int ret = 0;
+		
+		try{
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("delete AvaliableTime where userId = :userId");
+			query.setParameter("userId", userId);
+			ret = query.executeUpdate();
+			transaction.commit();
+		} catch (HibernateException e){
+			ret = 1;
+		} finally {
+			session.close();
+		}
+		return ret;
+	}
+
+	@Override
+	public int updateAvaliableTimeSchedule(User u, ArrayList<AvaliableTime> a) {
+		int userId = u.getId();
+		deleteAvaliableTimeByUserId(userId);
+		for(AvaliableTime time : a) addAvaliableTime(u, time);
+		return 0;
+	}
+
+	@Override
+	public int updateCarInformationByUserId(int carId, int maxSeats,
+			int maxLuggages) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		Car c = null;
+		int ret = 0;
+		
+		try{
+			transaction = session.beginTransaction();
+			c = (Car) session.get(Car.class, carId);
+			c.setMaxSeats(maxSeats);
+			c.setMaxLuggages(maxLuggages);
+			transaction.commit();
+		} catch (HibernateException e){
+			ret = 1;
+		} finally {
+			session.close();
+		}
+		return ret;
+	}
+
+	@Override
+	public int updateCarImage(int carId, String imageURI) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		Car c = null;
+		int ret = 0;
+		
+		try{
+			transaction = session.beginTransaction();
+			c = (Car) session.get(Car.class, carId);
+			c.setImageURI(imageURI);
+			transaction.commit();
+		} catch (HibernateException e){
+			ret = 1;
+		} finally {
+			session.close();
+		}
+		return ret;
 	}
 
 }

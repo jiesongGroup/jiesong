@@ -19,7 +19,7 @@ import com.jiesong.adapter.SqlTimestampAdapter;
  */
 @Entity
 @Table(name = "avaliableTime")
-@XmlRootElement(name = "abaliableTime")
+@XmlRootElement(name = "avaliableTime")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AvaliableTime {
 	@XmlJavaTypeAdapter(SqlTimestampAdapter.class)
@@ -31,7 +31,8 @@ public class AvaliableTime {
 	private boolean active = false;
 	private int id = 0;
 	private int userId = 0;
-	private int timeFrame = 0;
+	private int TimeFrameStart = 0;
+	private int TimeFrameEnd = 0;
 	
 	public AvaliableTime(){
 		
@@ -93,11 +94,19 @@ public class AvaliableTime {
 		return this.userId;
 	}
 	
-	public void setTimeFrame(int timeFrame){
-		this.timeFrame = timeFrame;
+	public void setTimeFrameStart(int timeFrame){
+		this.TimeFrameStart = timeFrame;
 	}
 	
-	public int getTimeFrame(){
-		return this.timeFrame;
+	public int getTimeFrameStart(){
+		return this.TimeFrameStart;
+	}
+	
+	public void setTimeFrameEnd(int timeFrame){
+		this.TimeFrameEnd = timeFrame;
+	}
+	
+	public int getTimeFrameEnd(){
+		return this.TimeFrameEnd;
 	}
 }

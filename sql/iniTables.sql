@@ -75,7 +75,8 @@ create table avaliableTime(
 	Active				BOOLEAN NOT NULL,
 	Id					serial,
 	UserId				BIGINT UNSIGNED NOT NULL,
-	TimeFrame			int not null,
+	TimeFrameStart		int not null,
+	TimeFrameEnd		int not null,
 	
 	primary key (id)
 );
